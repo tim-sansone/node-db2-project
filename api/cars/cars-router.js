@@ -26,4 +26,16 @@ router.post('/', checkCarPayload, checkVinNumberValid, checkVinNumberUnique, (re
         .catch(next)
 })
 
+router.put('/:id', checkCarId, (req, res, next) => {
+    Cars.update(req.params.id, req.body)
+        .then(car => res.json(car))
+        .catch(next)
+})
+
+router.delete('/:id', checkCarId, (req, res, next) => {
+    Cars.remove(req.params.id)
+        .then(number => res.json(req.car))
+        .catch(next)
+})
+
 module.exports = router;

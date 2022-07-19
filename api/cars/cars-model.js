@@ -16,9 +16,19 @@ const create = car => {
   return db('cars').insert(car).then(ids => getById(ids[0]))
 }
 
+const update = (id, car) => {
+  return db('cars').where('id', id).update(car).then(number => getById(id))
+}
+
+const remove = id => {
+  return db('cars').where('id', id).delete();
+}
+
 module.exports = {
   getAll,
   getById,
   getByVin,
-  create
+  create,
+  update,
+  remove
 }
